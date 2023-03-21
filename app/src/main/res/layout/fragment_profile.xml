@@ -3,15 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".ui.profile.ProfileFragment">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
+        app:shapeAppearanceOverlay="@style/roundedImageView"
         android:id="@+id/img_profile"
+        android:src="@drawable/icecream"
+        android:clipToOutline="true"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:background="@color/grey"
+        android:background="@color/peach"
         tools:ignore="ContentDescription" />
 
     <EditText
