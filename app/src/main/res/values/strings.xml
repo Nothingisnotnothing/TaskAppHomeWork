@@ -7,4 +7,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="username">Username</string>
     <string name="title_profile">Profile</string>
+    <string name="get_started">Get started</string>
+    <string name="skip">Skip</string>
+    <string name="title_onboard">Board</string>
+    <string name="next">Next</string>
 </resources>

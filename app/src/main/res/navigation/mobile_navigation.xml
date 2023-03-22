@@ -28,5 +28,10 @@
         android:name="kg.geeks.hw.taskapp.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_on_board"
+        android:name="kg.geeks.hw.taskapp.ui.onboard.OnBoardFragment"
+        android:label="@string/title_onboard"
+        tools:layout="@layout/fragment_on_board" />
 
 </navigation>
