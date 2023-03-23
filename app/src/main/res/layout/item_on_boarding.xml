@@ -91,7 +91,7 @@
         android:padding="16dp"
         android:progress="0"
         android:progressDrawable="@drawable/custom_seekbar"
-        android:thumb="@drawable/thumb_seekbar"
+        android:thumb="@drawable/custom_thumb_seekbar"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
