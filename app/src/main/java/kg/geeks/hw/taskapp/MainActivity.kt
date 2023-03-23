@@ -10,6 +10,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import kg.geeks.hw.taskapp.databinding.ActivityMainBinding
 
+// 3 урок: Хранение данных. SharedPreferences
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

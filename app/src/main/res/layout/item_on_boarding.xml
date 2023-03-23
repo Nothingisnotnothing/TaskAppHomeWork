@@ -45,6 +45,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         tools:text="Description" />
 
+    <!--Посмотреть как объединить элменты в список и задать значение между ними-->
     <Button
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
