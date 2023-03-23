@@ -18,42 +18,38 @@
         app:layout_constraintTop_toBottomOf="@id/tv_skip" />
 
     <TextView
+        style="@style/ItemOnBoardTextView"
         android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_board"
-        tools:text="Task Manager" />
+        tools:text="Task Manager"
+        tools:ignore="MissingConstraints" />
 
     <TextView
+        style="@style/ItemOnBoardTextView"
         android:id="@+id/tv_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="12dp"
         android:lineSpacingExtra="12dp"
         android:paddingHorizontal="32dp"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/btn_start"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
-        tools:text="Description" />
+        tools:text="Description"
+        tools:ignore="MissingConstraints" />
 
     <!--Посмотреть как объединить элменты в список и задать значение между ними-->
     <Button
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:backgroundTint="@color/blue"
+        android:layout_marginTop="40dp"
         android:text="@string/get_started"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_desc" />
