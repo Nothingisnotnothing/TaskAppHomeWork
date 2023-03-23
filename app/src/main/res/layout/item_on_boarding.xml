@@ -39,8 +39,8 @@
         android:lineSpacingExtra="12dp"
         android:paddingHorizontal="32dp"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btn_start"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         tools:text="Description" />
@@ -50,10 +50,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/blue"
         android:text="@string/get_started"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_desc" />
 
@@ -83,13 +83,13 @@
 
     <SeekBar
         android:id="@+id/seekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="88dp"
         android:layout_height="48dp"
         android:layout_marginBottom="8dp"
         android:max="2"
         android:padding="16dp"
         android:progress="0"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:progressDrawable="@drawable/custom_seekbar"
         android:thumb="@drawable/thumb_seekbar"
         android:visibility="gone"

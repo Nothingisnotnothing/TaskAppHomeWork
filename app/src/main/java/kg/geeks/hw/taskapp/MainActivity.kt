@@ -1,7 +1,4 @@
 package kg.geeks.hw.taskapp
-/*-Добавить в bottom nav - ProfileFragment
--Добавить круглую картинку и editText
--Переписать код с урока*/
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -49,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             navView.isVisible = bottomNavFragments.contains(destination.id)
             if (destination.id == R.id.navigation_on_board) {
                 supportActionBar?.hide()
