@@ -69,6 +69,7 @@ class OnBoardingAdapter(private val onClick: KFunction1<View, Unit>) :
             }
         }
 
+
         private fun initListeners() {
             binding.apply {
                 tvSkip.setOnClickListener {

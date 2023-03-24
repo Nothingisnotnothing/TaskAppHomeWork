@@ -32,6 +32,7 @@ class OnBoardFragment : Fragment() {
 
         binding.viewPager.adapter = adapter
 
+
         binding.viewPager.registerOnPageChangeCallback(object: OnPageChangeCallback(){
             override fun onPageScrolled(
                 position: Int,
