@@ -55,13 +55,8 @@ class OnBoardingAdapter(private val onClick: KFunction1<View, Unit>) :
 
                 initListeners()
                 isViewVisible()
-                seekbarPosition()
 
             }
-        }
-
-        private fun seekbarPosition() {
-            binding.seekBar.progress = adapterPosition
         }
 
         private fun isViewVisible() {
@@ -69,7 +64,6 @@ class OnBoardingAdapter(private val onClick: KFunction1<View, Unit>) :
                 if (adapterPosition != 2) {
                     tvSkip.isVisible = true
                     tvNext.isVisible = true
-                    seekBar.isVisible = true
                 }
                 btnStart.isVisible = adapterPosition == 2
             }
@@ -85,7 +79,6 @@ class OnBoardingAdapter(private val onClick: KFunction1<View, Unit>) :
                 }
                 tvNext.setOnClickListener {
                     onClick(tvNext)
-//                    onClickNext()
                 }
             }
         }
