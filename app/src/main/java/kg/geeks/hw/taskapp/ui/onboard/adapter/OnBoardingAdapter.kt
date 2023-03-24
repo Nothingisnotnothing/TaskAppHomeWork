@@ -1,6 +1,7 @@
 package kg.geeks.hw.taskapp.ui.onboard.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -8,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import kg.geeks.hw.taskapp.databinding.ItemOnBoardingBinding
 import kg.geeks.hw.taskapp.model.OnBoard
 import kg.geeks.hw.taskapp.utils.loadImage
+import kotlin.reflect.KFunction1
 
-class OnBoardingAdapter(private val onClick: () -> Unit, private val onClickNext: () -> Unit) :
+class OnBoardingAdapter(private val onClick: KFunction1<View, Unit>) :
     Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
 
     private val onBoardList = arrayListOf(
@@ -76,13 +78,14 @@ class OnBoardingAdapter(private val onClick: () -> Unit, private val onClickNext
         private fun initListeners() {
             binding.apply {
                 tvSkip.setOnClickListener {
-                    onClick()
+                    onClick(tvSkip)
                 }
                 btnStart.setOnClickListener {
-                    onClick()
+                    onClick(btnStart)
                 }
                 tvNext.setOnClickListener {
-                    onClickNext()
+                    onClick(tvNext)
+//                    onClickNext()
                 }
             }
         }
