@@ -29,17 +29,16 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("Recycle")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pref = Pref(requireContext())
-        binding.etProfileUsername.setText(pref.loadEtText())
         openGallery()
-
+        binding.etProfileUsername.setText(pref.loadEtText())
         binding.imgProfile.setImageURI(pref.loadImagePath()?.toUri())
     }
 
     //код ниже переписать завтра 10 раз
+    // Используем ACTION_OPEN_DOCUMENT, вместо ACTION_GET_CONTENT, так как необходимо потом продолжать пользоваться
     private fun openGallery() {
         binding.imgProfile.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
