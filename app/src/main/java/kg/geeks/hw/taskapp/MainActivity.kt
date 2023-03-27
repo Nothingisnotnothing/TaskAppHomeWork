@@ -1,5 +1,6 @@
 package kg.geeks.hw.taskapp
 
+import android.content.Context
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -8,18 +9,21 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import kg.geeks.hw.taskapp.data.local.Pref
 import kg.geeks.hw.taskapp.databinding.ActivityMainBinding
 
-// 3 урок: Хранение данных. SharedPreferences
-
+//д.3 1) После ввода чего либо в ET в ProfileFragment без нажатия текст должен сохранится
+// 2) При нажатии на IMG в ProfileFragment, загружаем фото из галереи, аналогично далее с ET
+//Осталось доделать сохранение пути к фото и загрузке при запуске приложения
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var pref: Pref
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        pref = Pref(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -28,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-
-        navController.navigate(R.id.navigation_on_board)
+        if (!pref.isUserSeen())
+            navController.navigate(R.id.navigation_on_board)
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
