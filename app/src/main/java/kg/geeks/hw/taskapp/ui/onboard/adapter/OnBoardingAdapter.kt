@@ -1,7 +1,6 @@
 package kg.geeks.hw.taskapp.ui.onboard.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -11,9 +10,11 @@ import kg.geeks.hw.taskapp.model.OnBoard
 import kg.geeks.hw.taskapp.utils.loadImage
 import kotlin.reflect.KFunction1
 
-class OnBoardingAdapter(private val onClick: KFunction1<View, Unit>) :
+// () -> вызов лямбды, далее определяю названия методов в OnBoardFragment и там задаю действия с ui user
+class OnBoardingAdapter(private val onNavigateup: () -> Unit, private val onNextClick: () -> Unit) :
     Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
 
+    //для примера сетили данные здесь, правильно сетить во фрагменте из БД.
     private val onBoardList = arrayListOf(
         OnBoard(
             "https://d57439wlqx3vo.cloudfront.net/iblock/f5d/f5dcf76697107ea302a1981718e33c95/1f68f84b53199df9cae4b253225eae63.png",
@@ -69,17 +70,16 @@ class OnBoardingAdapter(private val onClick: KFunction1<View, Unit>) :
             }
         }
 
-
         private fun initListeners() {
             binding.apply {
                 tvSkip.setOnClickListener {
-                    onClick(tvSkip)
+                    onNavigateup()
                 }
                 btnStart.setOnClickListener {
-                    onClick(btnStart)
+                    onNavigateup()
                 }
                 tvNext.setOnClickListener {
-                    onClick(tvNext)
+                    onNextClick()
                 }
             }
         }
