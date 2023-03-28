@@ -1,15 +1,18 @@
 package kg.geeks.hw.taskapp.ui.profile
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity.RESULT_OK
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toUri
 import kg.geeks.hw.taskapp.data.local.Pref
 import kg.geeks.hw.taskapp.databinding.FragmentProfileBinding
+import kg.geeks.hw.taskapp.utils.loadImageGlide
 
 class ProfileFragment : Fragment() {
 
@@ -33,29 +36,27 @@ class ProfileFragment : Fragment() {
         pref = Pref(requireContext())
         openGallery()
         binding.etProfileUsername.setText(pref.loadEtText())
-        binding.imgProfile.setImageURI(pref.loadImagePath()?.toUri())
+        //работает с Glide а не с setImageUri (по какой причине непонятно)
+        binding.imgProfile.loadImageGlide(pref.loadImagePath())
     }
 
-    //код ниже переписать завтра 10 раз
-    // Используем ACTION_OPEN_DOCUMENT, вместо ACTION_GET_CONTENT, так как необходимо потом продолжать пользоваться
+    //работает также как и startActivityForResult
     private fun openGallery() {
         binding.imgProfile.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
             intent.type = "image/*"
-            startActivityForResult(intent, KEY_FOR_LOAD_IMAGE)
+            launcher.launch(intent)
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == KEY_FOR_LOAD_IMAGE && resultCode == RESULT_OK && data != null) {
-            val image = data.data
-            binding.imgProfile.setImageURI(data.data)
-
-            pref.saveImagePath(image.toString())
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                val image = result.data?.data
+                binding.imgProfile.setImageURI(image.toString().toUri())
+                pref.saveImagePath(image.toString())
+            }
         }
-    }
 
     override fun onStop() {
         super.onStop()

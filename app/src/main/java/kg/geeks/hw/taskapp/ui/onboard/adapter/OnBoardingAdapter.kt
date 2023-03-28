@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import kg.geeks.hw.taskapp.databinding.ItemOnBoardingBinding
 import kg.geeks.hw.taskapp.model.OnBoard
-import kg.geeks.hw.taskapp.utils.loadImage
-import kotlin.reflect.KFunction1
+import kg.geeks.hw.taskapp.utils.loadImagePicasso
 
 // () -> вызов лямбды, далее определяю названия методов в OnBoardFragment и там задаю действия с ui user
 class OnBoardingAdapter(private val onNavigateup: () -> Unit, private val onNextClick: () -> Unit) :
@@ -52,7 +51,7 @@ class OnBoardingAdapter(private val onNavigateup: () -> Unit, private val onNext
             binding.apply {
                 tvTitle.text = onBoard.title
                 tvDesc.text = onBoard.desc
-                imgBoard.loadImage(onBoard.image)
+                imgBoard.loadImagePicasso(onBoard.image)
 
                 initListeners()
                 isViewVisible()
