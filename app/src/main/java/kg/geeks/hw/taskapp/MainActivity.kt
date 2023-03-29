@@ -12,9 +12,9 @@ import androidx.navigation.ui.setupWithNavController
 import kg.geeks.hw.taskapp.data.local.Pref
 import kg.geeks.hw.taskapp.databinding.ActivityMainBinding
 
-//д.3 1) После ввода чего либо в ET в ProfileFragment без нажатия текст должен сохранится
-// 2) При нажатии на IMG в ProfileFragment, загружаем фото из галереи, аналогично далее с ET
-//Осталось доделать сохранение пути к фото и загрузке при запуске приложения
+//д.з. 4: 1) Сделать удаление, через AlertDialog и длительное нажатие на item(выбор удалить или нет)
+//2) Сделать Апдейт, при нажатии на item, сетятся данные из item в ET, кнопка save меняется на edit, после данные обновляются
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
