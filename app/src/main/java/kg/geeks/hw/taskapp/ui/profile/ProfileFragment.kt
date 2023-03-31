@@ -1,24 +1,25 @@
 package kg.geeks.hw.taskapp.ui.profile
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity.RESULT_OK
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import kg.geeks.hw.taskapp.data.local.Pref
 import kg.geeks.hw.taskapp.databinding.FragmentProfileBinding
 import kg.geeks.hw.taskapp.utils.loadImageGlide
 
 class ProfileFragment : Fragment() {
 
-    companion object {
-        const val KEY_FOR_LOAD_IMAGE = 998
-    }
-
     private lateinit var binding: FragmentProfileBinding
     private lateinit var pref: Pref
+    private lateinit var launcherSetImageView : ActivityResultLauncher<Intent>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,24 +36,23 @@ class ProfileFragment : Fragment() {
         binding.apply {
             etProfileUsername.setText(pref.loadEtText())
             imgProfile.loadImageGlide(pref.loadImagePath())
+            Log.d("kamino", pref.loadImagePath().toString())
         }
     }
 
     private fun openGallery() {
+        launcherSetImageView = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                val photoUri = result.data?.data
+                binding.imgProfile.setImageURI(photoUri)
+                pref.saveImagePath(photoUri.toString())
+            }
+        }
+
         binding.imgProfile.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
             intent.type = "image/*"
-            startActivityForResult(intent, KEY_FOR_LOAD_IMAGE)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == KEY_FOR_LOAD_IMAGE && resultCode == RESULT_OK && data != null) {
-            val image = data.data
-            binding.imgProfile.setImageURI(data.data)
-            pref.saveImagePath(image.toString())
+            launcherSetImageView.launch(intent)
         }
     }
 
