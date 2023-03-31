@@ -5,12 +5,23 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">72dp</item>
     </style>
-    
+
     <style name="ItemOnBoardTextView" parent="">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="layout_constraintEnd_toEndOf">parent</item>
         <item name="layout_constraintStart_toStartOf">parent</item>
+    </style>
+
+    <style name="ItemOnBoardingTextViewButtons" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="FragmentTaskEditText" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>

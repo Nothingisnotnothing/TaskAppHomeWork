@@ -15,8 +15,7 @@ import kg.geeks.hw.taskapp.ui.onboard.adapter.OnBoardingAdapter
 class OnBoardFragment : Fragment() {
 
     private lateinit var binding: FragmentOnBoardBinding
-    //при получении конструктора из OnBoardingAdapter, через ::название метода, далее задаем действия,
-    //this для :: не используем так как автоматически юзает this
+    private lateinit var pref: Pref
     private val adapter = OnBoardingAdapter(::onNavigateUp, ::openNextPage)
 
     override fun onCreateView(
@@ -34,6 +33,11 @@ class OnBoardFragment : Fragment() {
         seekBarIsVisible()
     }
 
+    private fun onNavigateUp() {
+        findNavController().navigateUp()
+        prefUserSeen()
+    }
+
     private fun openNextPage() {
         binding.apply { viewPager.currentItem = viewPager.currentItem + 1 }
         prefUserSeen()
@@ -43,13 +47,6 @@ class OnBoardFragment : Fragment() {
         pref.saveUserSeen()
     }
 
-    private fun onNavigateUp() {
-        findNavController().navigateUp()
-        prefUserSeen()
-    }
-
-    private lateinit var pref: Pref
-
     private fun seekBarIsVisible() {
         binding.viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageScrolled(
@@ -57,13 +54,13 @@ class OnBoardFragment : Fragment() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-
-                binding.seekBar.isVisible = position != 2
-                binding.seekBar.progress = position
+                binding.apply {
+                    seekBar.isVisible = position != 2
+                    seekBar.progress = position
+                }
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
             }
         })
     }
-
 
 }

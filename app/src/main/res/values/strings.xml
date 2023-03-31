@@ -10,4 +10,13 @@
     <string name="skip">Skip</string>
     <string name="title_onboard">Board</string>
     <string name="next">Next</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="save">Save</string>
+    <string name="menu">Menu</string>
+    <string name="delete_task">Delete task?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="edit">Edit</string>
+    <string name="this_is_must_be_written">Это поле обязательно для заполнения</string>
 </resources>

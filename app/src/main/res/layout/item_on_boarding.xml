@@ -18,19 +18,19 @@
         app:layout_constraintTop_toBottomOf="@id/tv_skip" />
 
     <TextView
-        style="@style/ItemOnBoardTextView"
         android:id="@+id/tv_title"
+        style="@style/ItemOnBoardTextView"
         android:layout_marginTop="32dp"
         android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/img_board"
-        tools:text="Task Manager"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:text="Task Manager" />
 
     <TextView
-        style="@style/ItemOnBoardTextView"
         android:id="@+id/tv_desc"
+        style="@style/ItemOnBoardTextView"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="12dp"
         android:lineSpacingExtra="12dp"
@@ -38,16 +38,16 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/btn_start"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
-        tools:text="Description"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:text="Description" />
 
     <!--Посмотреть как объединить элменты в список и задать значение между ними-->
     <Button
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue"
         android:layout_marginTop="40dp"
+        android:backgroundTint="@color/blue"
         android:text="@string/get_started"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,9 +56,7 @@
 
     <TextView
         android:id="@+id/tv_skip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
+        style="@style/ItemOnBoardingTextViewButtons"
         android:text="@string/skip"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -68,9 +66,7 @@
 
     <TextView
         android:id="@+id/tv_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
+        style="@style/ItemOnBoardingTextViewButtons"
         android:text="@string/next"
         android:textColor="@color/blue"
         android:visibility="gone"

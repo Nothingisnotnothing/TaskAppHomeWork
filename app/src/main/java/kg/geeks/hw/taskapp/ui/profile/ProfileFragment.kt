@@ -1,6 +1,5 @@
 package kg.geeks.hw.taskapp.ui.profile
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity.RESULT_OK
-import androidx.core.net.toUri
 import kg.geeks.hw.taskapp.data.local.Pref
 import kg.geeks.hw.taskapp.databinding.FragmentProfileBinding
+import kg.geeks.hw.taskapp.utils.loadImageGlide
 
 class ProfileFragment : Fragment() {
 
@@ -33,8 +32,10 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         pref = Pref(requireContext())
         openGallery()
-        binding.etProfileUsername.setText(pref.loadEtText())
-        binding.imgProfile.setImageURI(pref.loadImagePath()?.toUri())
+        binding.apply {
+            etProfileUsername.setText(pref.loadEtText())
+            imgProfile.loadImageGlide(pref.loadImagePath())
+        }
     }
 
     private fun openGallery() {

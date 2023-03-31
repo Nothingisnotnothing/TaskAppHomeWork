@@ -1,6 +1,5 @@
 package kg.geeks.hw.taskapp
 
-import android.content.Context
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -23,15 +22,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pref = Pref(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        pref = Pref(this)
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         if (!pref.isUserSeen())
             navController.navigate(R.id.navigation_on_board)
 
@@ -62,4 +59,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }

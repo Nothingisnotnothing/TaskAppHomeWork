@@ -13,7 +13,6 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="@color/peach"
-        android:src="@drawable/icecream"
         app:shapeAppearanceOverlay="@style/ProfileAvatarRoundedImageView"
         tools:ignore="ContentDescription" />
 

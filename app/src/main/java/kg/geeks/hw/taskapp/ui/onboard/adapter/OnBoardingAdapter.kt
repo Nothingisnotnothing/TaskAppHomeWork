@@ -9,11 +9,9 @@ import kg.geeks.hw.taskapp.databinding.ItemOnBoardingBinding
 import kg.geeks.hw.taskapp.model.OnBoard
 import kg.geeks.hw.taskapp.utils.loadImagePicasso
 
-// () -> вызов лямбды, далее определяю названия методов в OnBoardFragment и там задаю действия с ui user
-class OnBoardingAdapter(private val onNavigateup: () -> Unit, private val onNextClick: () -> Unit) :
+class OnBoardingAdapter(private val onNavigateUp: () -> Unit, private val onNextClick: () -> Unit) :
     Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
 
-    //для примера сетили данные здесь, правильно сетить во фрагменте из БД.
     private val onBoardList = arrayListOf(
         OnBoard(
             "https://d57439wlqx3vo.cloudfront.net/iblock/f5d/f5dcf76697107ea302a1981718e33c95/1f68f84b53199df9cae4b253225eae63.png",
@@ -46,7 +44,6 @@ class OnBoardingAdapter(private val onNavigateup: () -> Unit, private val onNext
 
     inner class OnBoardingViewHolder(private val binding: ItemOnBoardingBinding) :
         ViewHolder(binding.root) {
-
         fun bind(onBoard: OnBoard) {
             binding.apply {
                 tvTitle.text = onBoard.title
@@ -55,7 +52,6 @@ class OnBoardingAdapter(private val onNavigateup: () -> Unit, private val onNext
 
                 initListeners()
                 isViewVisible()
-
             }
         }
 
@@ -72,10 +68,10 @@ class OnBoardingAdapter(private val onNavigateup: () -> Unit, private val onNext
         private fun initListeners() {
             binding.apply {
                 tvSkip.setOnClickListener {
-                    onNavigateup()
+                    onNavigateUp()
                 }
                 btnStart.setOnClickListener {
-                    onNavigateup()
+                    onNavigateUp()
                 }
                 tvNext.setOnClickListener {
                     onNextClick()

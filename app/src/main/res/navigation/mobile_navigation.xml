@@ -33,5 +33,10 @@
         android:name="kg.geeks.hw.taskapp.ui.onboard.OnBoardFragment"
         android:label="@string/title_onboard"
         tools:layout="@layout/fragment_on_board" />
+    <fragment
+        android:id="@+id/navigation_task"
+        android:name="kg.geeks.hw.taskapp.ui.task.TaskFragment"
+        android:label="Task"
+        tools:layout="@layout/fragment_task" />
 
 </navigation>
