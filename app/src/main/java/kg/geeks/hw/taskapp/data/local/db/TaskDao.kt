@@ -17,4 +17,7 @@ interface TaskDao {
 
     @Query("SELECT * FROM task ORDER BY id ASC")
     fun getAll(): List<Task>
+
+    @Query("SELECT * FROM task WHERE id = :id")
+    fun getMovie(id: Int): List<Task>
 }
