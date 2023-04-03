@@ -11,8 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import kg.geeks.hw.taskapp.data.local.Pref
 import kg.geeks.hw.taskapp.databinding.ActivityMainBinding
 
-//д.з. 4: 1) Сделать удаление, через AlertDialog и длительное нажатие на item(выбор удалить или нет)
-//2) Сделать Апдейт, при нажатии на item, сетятся данные из item в ET, кнопка save меняется на edit, после данные обновляются
+//д.з. 5: 1) сделать, чтобы айтемы показывались то черным фоном, беслым текстом, то наоборот
 
 class MainActivity : AppCompatActivity() {
 

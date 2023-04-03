@@ -1,5 +1,6 @@
 package kg.geeks.hw.taskapp.ui.home.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -28,6 +29,11 @@ class TaskAdapter(
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.bind(taskList[position])
+        if (position % 2 == 0) {
+            holder.itemTaskBinding.setBackgroundColor(Color.BLACK)
+        } else {
+            holder.itemTaskBinding.setBackgroundColor(Color.WHITE)
+        }
     }
 
     fun addTasks(task: List<Task>) {
@@ -42,11 +48,19 @@ class TaskAdapter(
 
     inner class TaskViewHolder(private val binding: ItemTaskBinding) :
         ViewHolder(binding.root) {
+        val itemTaskBinding = binding.itemTaskLayout
 
         fun bind(task: Task) {
             binding.apply {
                 tvTitle.text = task.title
                 tvDesc.text = task.desc
+                if (adapterPosition % 2 == 0){
+                    tvTitle.setTextColor(Color.WHITE)
+                    tvDesc.setTextColor(Color.WHITE)
+                } else {
+                    tvTitle.setTextColor(Color.BLACK)
+                    tvDesc.setTextColor(Color.BLACK)
+                }
             }
             itemView.setOnLongClickListener {
                 onDeleteClick(adapterPosition)
