@@ -13,11 +13,18 @@ import kg.geeks.hw.taskapp.R
 import kg.geeks.hw.taskapp.databinding.FragmentHomeBinding
 import kg.geeks.hw.taskapp.model.Task
 import kg.geeks.hw.taskapp.ui.home.adapter.TaskAdapter
+import kg.geeks.hw.taskapp.ui.task.TaskFragment.Companion.KEY_FOR_OPEN_HOME_FRAGMENT
+import kg.geeks.hw.taskapp.ui.task.TaskFragment.Companion.KEY_FOR_UPDATED_TASK
 
 class HomeFragment : Fragment() {
 
+    companion object {
+        const val KEY_FOR_UPDATE_TASK = "keyForUpdateTask"
+        const val KEY_FOR_OPEN_PROFILE_FRAGMENT = "keyForOpenProfileFragment"
+    }
+
     private lateinit var binding: FragmentHomeBinding
-    private val adapter = TaskAdapter(::onLongClick, ::onItemClick)
+    private val adapter = TaskAdapter(::onDeleteClick, ::onItemClick)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +37,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setData()
+        checkTaskUpdate()
+        val data = App.db.taskDao().getAll()
+        adapter.addTasks(data)
 
         binding.apply {
             taskRecyclerview.adapter = adapter
@@ -40,40 +49,44 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun onLongClick(task: Task) {
-        openAlertDialog(task)
+    private fun checkTaskUpdate() {
+        if (arguments?.getBoolean(KEY_FOR_OPEN_HOME_FRAGMENT) == true) {
+            val updatedTask = arguments?.getSerializable(KEY_FOR_UPDATED_TASK) as Task
+            App.db.taskDao().update(updatedTask)
+        }
     }
 
-    private fun onItemClick(task: Task) {
-        findNavController().navigate(R.id.navigation_task, bundleOf(KEY_FOR_UPDATE_TASK to true))
+    private fun onDeleteClick(position: Int) {
+        openAlertDialog(position)
     }
 
-    private fun openAlertDialog(task: Task) {
-        val alertDialog = AlertDialog.Builder(requireContext())
-        alertDialog.apply {
+    private fun onItemClick(position: Int) {
+        val task = adapter.getTask(position)
+        findNavController().navigate(
+            R.id.navigation_task,
+            bundleOf(KEY_FOR_UPDATE_TASK to task, KEY_FOR_OPEN_PROFILE_FRAGMENT to true)
+        )
+    }
+
+    private fun openAlertDialog(position: Int) {
+        val builderAlertDialog = AlertDialog.Builder(requireContext())
+        builderAlertDialog.apply {
             setTitle(R.string.menu)
             setMessage(R.string.delete_task)
 
             setPositiveButton(
                 getString(R.string.yes)
             ) { dialog, message ->
-                App.db.taskDao().delete(task)
-                dialog.dismiss()
-                setData()
+                App.db.taskDao().delete(adapter.getTask(position))
+                val data = App.db.taskDao().getAll()
+                adapter.addTasks(data)
             }
+
             setNegativeButton(
                 getString(R.string.no)
             ) { dialog, message -> dialog?.dismiss() }
         }
-        alertDialog.create().show()
-    }
-
-    private fun setData() {
-        val data = App.db.taskDao().getAll()
-        adapter.addTasks(data)
-    }
-
-    companion object {
-        const val KEY_FOR_UPDATE_TASK = "keyForUpdateTask"
+        val alertDialog1 = builderAlertDialog.create()
+        alertDialog1.show()
     }
 }

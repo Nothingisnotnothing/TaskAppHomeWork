@@ -8,8 +8,8 @@ import kg.geeks.hw.taskapp.databinding.ItemTaskBinding
 import kg.geeks.hw.taskapp.model.Task
 
 class TaskAdapter(
-    private val onLongClick: (task : Task) -> Unit,
-    private val onItemClick: (task : Task) -> Unit
+    private val onDeleteClick: (position: Int) -> Unit,
+    private val onItemClick: (position: Int) -> Unit
 ) : Adapter<TaskAdapter.TaskViewHolder>() {
 
     private var taskList: ArrayList<Task> = arrayListOf()
@@ -36,6 +36,10 @@ class TaskAdapter(
         notifyDataSetChanged()
     }
 
+    fun getTask(position: Int): Task {
+        return taskList[position]
+    }
+
     inner class TaskViewHolder(private val binding: ItemTaskBinding) :
         ViewHolder(binding.root) {
 
@@ -45,12 +49,13 @@ class TaskAdapter(
                 tvDesc.text = task.desc
             }
             itemView.setOnLongClickListener {
-                onLongClick(task)
+                onDeleteClick(adapterPosition)
                 false
             }
             itemView.setOnClickListener {
-                onItemClick(task)
+                onItemClick(adapterPosition)
             }
         }
+
     }
 }

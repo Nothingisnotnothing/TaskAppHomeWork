@@ -6,5 +6,7 @@ import kg.geeks.hw.taskapp.model.Task
 
 @Database(entities = [Task::class], version = 1)
 abstract class AppDataBase : RoomDatabase() {
+
     abstract fun taskDao(): TaskDao
+
 }

@@ -7,6 +7,13 @@ class Pref(context: Context) {
 
     private val pref = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE)
 
+    companion object {
+        const val PREF_NAME = "taskApp"
+        const val IS_USER_SEEN_ET = "isUserSeen"
+        const val SAVE_ET_TEXT = "saveEtText"
+        const val SAVE_IMAGE_PATH = "imagePath"
+    }
+
     fun isUserSeen(): Boolean {
         return pref.getBoolean(IS_USER_SEEN_ET, false)
     }
@@ -27,10 +34,4 @@ class Pref(context: Context) {
 
     fun loadImagePath() = pref.getString(SAVE_IMAGE_PATH, "")
 
-    companion object {
-        const val PREF_NAME = "taskApp"
-        const val IS_USER_SEEN_ET = "isUserSeen"
-        const val SAVE_ET_TEXT = "saveEtText"
-        const val SAVE_IMAGE_PATH = "imagePath"
-    }
 }
