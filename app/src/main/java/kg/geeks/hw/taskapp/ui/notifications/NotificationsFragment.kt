@@ -19,5 +19,4 @@ class NotificationsFragment : Fragment() {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 }

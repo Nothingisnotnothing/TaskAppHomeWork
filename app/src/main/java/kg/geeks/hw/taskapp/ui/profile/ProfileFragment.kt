@@ -19,7 +19,15 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var pref: Pref
-    private lateinit var launcherSetImageView : ActivityResultLauncher<Intent>
+    private val launcherSetImageView =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                val photoUri = result.data?.data
+                binding.imgProfile.setImageURI(photoUri)
+                pref.saveImagePath(photoUri.toString())
+                binding.imgProfile.loadImageGlide(pref.loadImagePath())
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,19 +44,17 @@ class ProfileFragment : Fragment() {
         binding.apply {
             etProfileUsername.setText(pref.loadEtText())
             imgProfile.loadImageGlide(pref.loadImagePath())
-            Log.d("kamino", pref.loadImagePath().toString())
+        }
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.exit.setOnClickListener{
+            android.os.Process.killProcess(android.os.Process.myPid())
         }
     }
 
     private fun openGallery() {
-        launcherSetImageView = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
-                val photoUri = result.data?.data
-                binding.imgProfile.setImageURI(photoUri)
-                pref.saveImagePath(photoUri.toString())
-            }
-        }
-
         binding.imgProfile.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
             intent.type = "image/*"
@@ -60,5 +66,4 @@ class ProfileFragment : Fragment() {
         super.onStop()
         pref.saveEtText(binding.etProfileUsername.text.toString())
     }
-
 }

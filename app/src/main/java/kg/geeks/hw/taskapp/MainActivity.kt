@@ -11,7 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import kg.geeks.hw.taskapp.data.local.Pref
 import kg.geeks.hw.taskapp.databinding.ActivityMainBinding
 
-//д.з. 5: 1) сделать, чтобы айтемы показывались то черным фоном, беслым текстом, то наоборот
+//д.з. 6: 1) Посмотреть FireBase.
 
 class MainActivity : AppCompatActivity() {
 
@@ -58,5 +58,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }

@@ -33,5 +33,4 @@ class Pref(context: Context) {
     }
 
     fun loadImagePath() = pref.getString(SAVE_IMAGE_PATH, "")
-
 }

@@ -9,8 +9,8 @@ import kg.geeks.hw.taskapp.databinding.ItemTaskBinding
 import kg.geeks.hw.taskapp.model.Task
 
 class TaskAdapter(
-    private val onDeleteClick: (position: Int) -> Unit,
-    private val onItemClick: (position: Int) -> Unit
+    private val onDeleteClick: (id: Int) -> Unit,
+    private val onItemClick: (id: Int) -> Unit
 ) : Adapter<TaskAdapter.TaskViewHolder>() {
 
     private var taskList: ArrayList<Task> = arrayListOf()
@@ -37,19 +37,18 @@ class TaskAdapter(
         notifyDataSetChanged()
     }
 
-    fun getTask(position: Int): Task {
-        return taskList[position]
+    fun getTask(position: Int): Int? {
+        return taskList[position].id
     }
 
     inner class TaskViewHolder(private val binding: ItemTaskBinding) :
         ViewHolder(binding.root) {
-        val itemTaskBinding = binding.itemTaskLayout
 
         fun bind(task: Task) {
             binding.apply {
                 tvTitle.text = task.title
                 tvDesc.text = task.desc
-                if (adapterPosition % 2 == 0){
+                if (adapterPosition % 2 == 0) {
                     itemView.setBackgroundColor(Color.BLACK)
                     tvTitle.setTextColor(Color.WHITE)
                     tvDesc.setTextColor(Color.WHITE)
@@ -60,13 +59,12 @@ class TaskAdapter(
                 }
             }
             itemView.setOnLongClickListener {
-                onDeleteClick(adapterPosition)
+                onDeleteClick(getTask(adapterPosition)!!)
                 false
             }
             itemView.setOnClickListener {
-                onItemClick(adapterPosition)
+                onItemClick(getTask(adapterPosition)!!)
             }
         }
-
     }
 }
