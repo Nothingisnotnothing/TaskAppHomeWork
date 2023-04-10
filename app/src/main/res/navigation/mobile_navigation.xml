@@ -38,5 +38,10 @@
         android:name="kg.geeks.hw.taskapp.ui.task.TaskFragment"
         android:label="Task"
         tools:layout="@layout/fragment_task" />
+    <fragment
+        android:id="@+id/navigation_auth"
+        android:name="kg.geeks.hw.taskapp.ui.auth.AuthFragment"
+        android:label="Authentication"
+        tools:layout="@layout/fragment_auth" />
 
 </navigation>
