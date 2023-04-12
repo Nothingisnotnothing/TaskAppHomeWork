@@ -43,5 +43,10 @@
         android:name="kg.geeks.hw.taskapp.ui.auth.AuthFragment"
         android:label="Authentication"
         tools:layout="@layout/fragment_auth" />
+    <fragment
+        android:id="@+id/navigation_auth_phone"
+        android:name="kg.geeks.hw.taskapp.ui.auth.AuthPhoneFragment"
+        android:label="Phone authentication"
+        tools:layout="@layout/fragment_auth_phone" />
 
 </navigation>

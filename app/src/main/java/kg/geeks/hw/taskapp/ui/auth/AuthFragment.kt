@@ -49,6 +49,9 @@ class AuthFragment : Fragment() {
         binding.btnGoogle.setOnClickListener {
             auth()
         }
+        binding.btnPhone.setOnClickListener {
+            findNavController().navigate(R.id.navigation_auth_phone)
+        }
     }
 
     private fun auth() {
