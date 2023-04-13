@@ -14,8 +14,6 @@ import com.google.firebase.messaging.FirebaseMessaging
 import kg.geeks.hw.taskapp.data.local.Pref
 import kg.geeks.hw.taskapp.databinding.ActivityMainBinding
 
-//д.з. 6: 1) Посмотреть FireBase.
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

@@ -16,20 +16,24 @@
         app:shapeAppearanceOverlay="@style/ProfileAvatarRoundedImageView"
         tools:ignore="ContentDescription" />
 
-    <EditText
-        android:id="@+id/et_profile_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_profile_username"
+        style="@style/MyTextInputLayout"
         android:layout_marginTop="12dp"
         android:hint="@string/username"
-        tools:ignore="Autofill,TextFields" />
+        tools:ignore="Autofill,TextFields">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_profile_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/exit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/exit"
-        android:src="@drawable/ic_exit_black_24"
-        />
+        android:layout_marginTop="12dp"
+        android:src="@drawable/ic_exit_black_24" />
 
 </LinearLayout>

@@ -73,4 +73,9 @@ dependencies {
 
     //Play Integrity
     implementation 'com.google.android.play:integrity:1.1.0'
+
+    //FireBase FireStore Cloud
+    implementation 'com.google.firebase:firebase-firestore:24.4.5'
+
+    
 }

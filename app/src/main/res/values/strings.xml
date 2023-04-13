@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TaskApp</string>
+    <string name="app_name">HomeTaskApp</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -29,4 +29,6 @@
     <string name="make_authorization">Make authorization</string>
     <string name="sign_in">Sign in</string>
     <string name="get_started">Get Started</string>
+    <string name="car_name">Car name</string>
+    <string name="car_model">Car model</string>
 </resources>

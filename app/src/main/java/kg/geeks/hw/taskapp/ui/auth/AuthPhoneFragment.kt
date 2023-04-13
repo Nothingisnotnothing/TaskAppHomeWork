@@ -1,7 +1,6 @@
 package kg.geeks.hw.taskapp.ui.auth
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -40,7 +39,7 @@ class AuthPhoneFragment : Fragment() {
 
     private fun checkPhone() {
         binding.apply {
-            if (etPhone.text.length == 13) {
+            if (etPhone.text?.length == 13) {
                 auth()
             } else {
                 etPhone.error = "Example: +996999888777"
@@ -51,13 +50,12 @@ class AuthPhoneFragment : Fragment() {
     private fun auth() {
         auth.useAppLanguage()
         val options = PhoneAuthOptions.newBuilder(auth)
-            .setPhoneNumber(binding.etPhone.text.toString())       // Phone number to verify
-            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-            .setActivity(requireActivity())                 // Activity (for callback binding)
-            .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
+            .setPhoneNumber(binding.etPhone.text.toString())
+            .setTimeout(60L, TimeUnit.SECONDS)
+            .setActivity(requireActivity())
+            .setCallbacks(callbacks)
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
-        Log.e("ololo", "checkCode: " + storedVerificationId.toString() )
     }
 
     private fun checkCode() {
